@@ -10,16 +10,6 @@ import {
   ScrollView,
 } from 'react-native';
 
-// ↓ models & types ↓
-
-// ↓ navigation ↓
-
-// ↓ screens ↓
-
-// ↓ modals ↓
-
-// ↓ forms ↓
-
 // ↓ fragments ↓
 import FavoritesListFragment from '@src/components/fragments/favorites-list.fragment';
 import CharactersListFragment from '@src/components/fragments/characters-list.fragment';
