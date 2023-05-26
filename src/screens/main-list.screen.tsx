@@ -1,3 +1,4 @@
+// ↓ beloved react ↓
 import React, {useState} from 'react';
 
 import {
@@ -9,12 +10,24 @@ import {
   ScrollView,
 } from 'react-native';
 
+// ↓ models & types ↓
+
+// ↓ navigation ↓
+
+// ↓ screens ↓
+
+// ↓ modals ↓
+
+// ↓ forms ↓
+
+// ↓ fragments ↓
 import FavoritesListFragment from '@src/components/fragments/favorites-list.fragment';
 import CharactersListFragment from '@src/components/fragments/characters-list.fragment';
+import FiltersFragment from '@src/components/fragments/filters.fragment';
 
+// ↓ assets ↓
 import Search from '@src/assets/search.svg';
 import Filter from '@src/assets/filters.svg';
-import FiltersFragment from '@src/components/fragments/filters.fragment';
 
 export default function MainListScreen({}) {
   const [text, onChangeText] = useState('');

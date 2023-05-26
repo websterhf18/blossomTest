@@ -1,11 +1,19 @@
-import {useNavigation} from '@react-navigation/core';
-import {AppRoutes} from '@src/types/routes.types';
+// ↓ beloved react ↓
 import React, {useContext} from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
+
+// ↓ 3rd party utils ↓
+import {useNavigation} from '@react-navigation/core';
 import FastImage from 'react-native-fast-image';
 
-import Heart from '@src/assets/heart.svg';
+// ↓ models & types ↓
+import {AppRoutes} from '@src/types/routes.types';
+
+// ↓ store ↓
 import {AppContext} from '@src/store';
+
+// ↓ assets ↓
+import Heart from '@src/assets/heart.svg';
 
 export default function ListRowComponent({
   id,
@@ -15,6 +23,7 @@ export default function ListRowComponent({
   status,
   location,
 }: any) {
+  // ↓ other hooks ↓
   const navigation: any = useNavigation();
   const goToDetails = (item: any) => {
     navigation.navigate(AppRoutes.Details, {
@@ -22,16 +31,18 @@ export default function ListRowComponent({
       location: item.location.name,
     });
   };
+  // ↓ state ↓
   const {
     setFavorites,
     setCharacters,
     state: {favorites, characters},
   }: any = useContext(AppContext);
-  //
+
   const removeObjectWithId = (arr: any, id: any) => {
     return arr.filter((obj: any) => obj.id !== id);
   };
-  //
+
+  // ↓ callbacks ↓
   const addToFavorites = (item: any) => {
     const newFavorites = [...favorites, item];
     setFavorites(newFavorites);

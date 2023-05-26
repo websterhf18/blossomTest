@@ -1,6 +1,8 @@
+// ↓ beloved react ↓
 import React, {useContext} from 'react';
-
 import {Text, View} from 'react-native';
+
+// ↓ store ↓
 import {AppContext} from '@src/store';
 
 export default function ButtonsFilterComponent({}) {

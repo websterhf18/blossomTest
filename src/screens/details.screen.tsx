@@ -1,7 +1,11 @@
+// ↓ beloved react ↓
 import React from 'react';
 import {Text, View, SafeAreaView, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/core';
+
+// ↓ 3rd party utils ↓
 import FastImage from 'react-native-fast-image';
+
+// ↓ assets ↓
 import Arrow from '@src/assets/arrow.svg';
 
 export default function DetailsScreen({route, navigation}: any) {

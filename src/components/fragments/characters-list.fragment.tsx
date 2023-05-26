@@ -1,9 +1,14 @@
+// ↓ beloved react ↓
 import React, {useContext, useEffect} from 'react';
 import {Text, View} from 'react-native';
 
+// ↓ services ↓
 import {getAllCharactersQuery} from '@src/services/getAllCharacters.query';
+
+// ↓ store ↓
 import {AppContext} from '@src/store';
 
+// ↓ components ↓
 import ListRowComponent from '../list-row.component';
 
 export default function CharactersListFragment() {

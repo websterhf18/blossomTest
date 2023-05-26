@@ -1,9 +1,10 @@
+// ↓ beloved react ↓
 import {createContext, useState} from 'react';
-
+// ↓ Main Context of the app ↓
 export const AppContext: any = createContext(null);
 
 type Props = {children: any};
-
+// ↓ Main Container app ↓
 export default function AppContextContainer({children}: Props) {
   const [favorites, setFavorites] = useState([]);
   const [characters, setCharacters] = useState([]);

@@ -1,8 +1,12 @@
+// ↓ beloved react ↓
 import React from 'react';
-
 import {Text, View, Modal, TouchableOpacity} from 'react-native';
-import Arrow from '@src/assets/arrow.svg';
+
+// ↓ components ↓
 import ButtonsFilterComponent from '../buttons-filter.component';
+
+// ↓ assets ↓
+import Arrow from '@src/assets/arrow.svg';
 
 export default function FiltersFragment({modalVisible, setModalVisible}: any) {
   const closeModal = () => {
