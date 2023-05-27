@@ -10,7 +10,6 @@ import Arrow from '@src/assets/arrow.svg';
 import Heart from '@src/assets/heart.svg';
 
 export default function DetailsScreen({route, navigation}: any) {
-  //const navigation: any = useNavigation();
   const itemDetail = route.params;
   const onPress = () => {
     navigation.goBack();
@@ -37,7 +36,9 @@ export default function DetailsScreen({route, navigation}: any) {
         )}
       </View>
       <View className="m-4">
-        <Text className="text-2xl">{itemDetail.name}</Text>
+        <Text className="text-2xl" testID="detailName">
+          {itemDetail.name}
+        </Text>
       </View>
       <View className="ml-4 mr-4">
         <View className="h-16 border-t-4 border-gray-100">
