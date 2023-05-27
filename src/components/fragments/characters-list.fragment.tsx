@@ -6,23 +6,29 @@ import {Text, View} from 'react-native';
 import {getAllCharactersQuery} from '@src/services/getAllCharacters.query';
 
 // ↓ store ↓
-import {AppContext} from '@src/store';
+import {useStore} from '@src/store';
 
 // ↓ components ↓
 import ListRowComponent from '../list-row.component';
 
+// ↓ utils ↓
+import {returnCharacters, translateCharacters} from '@src/utils/arrays.utils';
+
 export default function CharactersListFragment() {
-  const {
-    setCharacters,
-    state: {characters},
-  }: any = useContext(AppContext);
+  const {characters, results, setCharacters}: any = useStore();
+
   const {loading, error, data} = getAllCharactersQuery();
 
   useEffect(() => {
-    setCharacters(data?.characters?.results || []);
+    //To add favorite value
+    const newCharacters = translateCharacters(data?.characters?.results || []);
+    setCharacters(newCharacters);
   }, [data]);
-
-  const lenghtList = data?.characters?.info?.count || 0;
+  //Return only the false objects
+  const lastCharacters = returnCharacters(
+    results.length > 0 ? results : characters,
+  );
+  const lenghtList = lastCharacters.length || 0;
 
   return (
     <>
@@ -35,7 +41,7 @@ export default function CharactersListFragment() {
       <View className="items-center">
         {!loading ? (
           <>
-            {characters.map((item: any, key: any) => {
+            {lastCharacters.map((item: any, key: any) => {
               return <ListRowComponent key={key} {...item} />;
             })}
           </>

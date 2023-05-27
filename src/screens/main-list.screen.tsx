@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import _ from 'lodash';
 
 // ↓ fragments ↓
 import FavoritesListFragment from '@src/components/fragments/favorites-list.fragment';
@@ -19,9 +20,21 @@ import FiltersFragment from '@src/components/fragments/filters.fragment';
 import Search from '@src/assets/search.svg';
 import Filter from '@src/assets/filters.svg';
 
+// ↓ store ↓
+import {useStore} from '@src/store';
+
 export default function MainListScreen({}) {
-  const [text, onChangeText] = useState('');
+  const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
+  const {characters, setResults}: any = useStore();
+  const findInput = (value: any) => {
+    setText(value);
+    const results = characters.filter((item: any) => {
+      if (value === '') return characters;
+      return item.name.toLowerCase().includes(value.toLowerCase());
+    });
+    setResults(results);
+  };
   return (
     <SafeAreaView className="flex-1 bg-white">
       <ScrollView>
@@ -35,7 +48,7 @@ export default function MainListScreen({}) {
             </View>
             <TextInput
               className="h-10 mt-1 mb-1 grow"
-              onChangeText={onChangeText}
+              onChangeText={findInput}
               value={text}
               placeholder="Search or filter results"
             />

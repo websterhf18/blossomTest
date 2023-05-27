@@ -3,4 +3,7 @@ export type CharactersType = {
   name: string;
   image: string;
   species: string;
+  location: {
+    name: string;
+  };
 };

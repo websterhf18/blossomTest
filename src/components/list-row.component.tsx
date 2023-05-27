@@ -10,19 +10,13 @@ import FastImage from 'react-native-fast-image';
 import {AppRoutes} from '@src/types/routes.types';
 
 // ↓ store ↓
-import {AppContext} from '@src/store';
+import {useStore} from '@src/store';
 
 // ↓ assets ↓
 import Heart from '@src/assets/heart.svg';
 
-export default function ListRowComponent({
-  id,
-  name,
-  image,
-  species,
-  status,
-  location,
-}: any) {
+export default function ListRowComponent(props: any) {
+  const {id, name, image, species, status, location, favorite} = props;
   // ↓ other hooks ↓
   const navigation: any = useNavigation();
   const goToDetails = (item: any) => {
@@ -32,33 +26,22 @@ export default function ListRowComponent({
     });
   };
   // ↓ state ↓
-  const {
-    setFavorites,
-    setCharacters,
-    state: {favorites, characters},
-  }: any = useContext(AppContext);
-
-  const removeObjectWithId = (arr: any, id: any) => {
-    return arr.filter((obj: any) => obj.id !== id);
-  };
+  const {characters, setCharacters}: any = useStore();
 
   // ↓ callbacks ↓
   const addToFavorites = (item: any) => {
-    const newFavorites = [...favorites, item];
-    setFavorites(newFavorites);
-    //
-    const newCharacters = removeObjectWithId(characters, item.id);
-    setCharacters(newCharacters);
-  };
-  const isOnFavorites = (id: any) => {
-    return Boolean(favorites.find((item: any) => item.id === id));
+    const indexObject = characters.findIndex((obj: any) => {
+      return obj.id === item.id;
+    });
+    characters[indexObject].favorite = !item.favorite;
+    setCharacters(characters);
   };
   return (
     <View className="h-16 border-t-2 border-gray-100 flex-row items-center">
       <View className="grow">
         <TouchableOpacity
           onPress={() =>
-            goToDetails({id, name, image, species, status, location})
+            goToDetails({id, name, image, species, status, location, favorite})
           }>
           <View className="m-2 flex-row items-center">
             <FastImage
@@ -78,9 +61,17 @@ export default function ListRowComponent({
       <View className="flex-none mr-2">
         <TouchableOpacity
           onPress={() =>
-            addToFavorites({id, name, image, species, status, location})
+            addToFavorites({
+              id,
+              name,
+              image,
+              species,
+              status,
+              location,
+              favorite,
+            })
           }>
-          <Heart color={isOnFavorites(id) ? '#53C629' : '#D1D5DB'} />
+          <Heart color={favorite ? '#53C629' : '#D1D5DB'} />
         </TouchableOpacity>
       </View>
     </View>

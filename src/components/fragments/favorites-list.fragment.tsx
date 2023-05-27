@@ -1,18 +1,20 @@
 // ↓ beloved react ↓
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 
 // ↓ store ↓
-import {AppContext} from '@src/store';
+import {useStore} from '@src/store';
 
 // ↓ components ↓
 import ListRowComponent from '../list-row.component';
 
-export default function FavoritesListFragment() {
-  const {
-    state: {favorites},
-  }: any = useContext(AppContext);
+// ↓ utils ↓
+import {returnFavorites} from '@src/utils/arrays.utils';
 
+export default function FavoritesListFragment() {
+  const {characters, results}: any = useStore();
+
+  const favorites = returnFavorites(results.length > 0 ? results : characters);
   const lenghtList = favorites.length;
 
   return (

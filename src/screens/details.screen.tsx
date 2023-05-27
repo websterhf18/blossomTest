@@ -7,6 +7,7 @@ import FastImage from 'react-native-fast-image';
 
 // ↓ assets ↓
 import Arrow from '@src/assets/arrow.svg';
+import Heart from '@src/assets/heart.svg';
 
 export default function DetailsScreen({route, navigation}: any) {
   //const navigation: any = useNavigation();
@@ -29,6 +30,11 @@ export default function DetailsScreen({route, navigation}: any) {
           }}
           resizeMode={FastImage.resizeMode.contain}
         />
+        {itemDetail.favorite && (
+          <View className="bg-white rounded-2xl absolute left-14 p-2 bottom-0">
+            <Heart color={'#53C629'} />
+          </View>
+        )}
       </View>
       <View className="m-4">
         <Text className="text-2xl">{itemDetail.name}</Text>

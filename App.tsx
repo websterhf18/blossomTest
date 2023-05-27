@@ -24,22 +24,17 @@ import AppNavigator from '@src/app.navigator';
 import {ApolloProvider} from '@apollo/client';
 import {client} from '@src/config';
 
-//Store
-import AppContextContainer from '@src/store';
-
 const App = (): React.ReactElement => {
   return (
     <SafeAreaProvider>
-      <AppContextContainer>
-        <ApolloProvider client={client}>
-          <View className="flex-1">
-            <StatusBar translucent barStyle={'dark-content'} />
-            <RNN.NavigationContainer>
-              <AppNavigator />
-            </RNN.NavigationContainer>
-          </View>
-        </ApolloProvider>
-      </AppContextContainer>
+      <ApolloProvider client={client}>
+        <View className="flex-1">
+          <StatusBar translucent barStyle={'dark-content'} />
+          <RNN.NavigationContainer>
+            <AppNavigator />
+          </RNN.NavigationContainer>
+        </View>
+      </ApolloProvider>
     </SafeAreaProvider>
   );
 };
