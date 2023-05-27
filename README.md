@@ -25,6 +25,6 @@ src
 ├── utils - helpers functions to parse or transform data
 ├── app.navigator - navigator container of screens
 ├── config - apollo client config file
-├── store - context API to store the data
+├── store - Zustand Class to store the data
 
 ```
