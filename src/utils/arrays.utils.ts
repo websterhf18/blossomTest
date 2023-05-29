@@ -7,9 +7,17 @@ export const returnFavorites = (arrayCharacters: any) => {
   });
   return favorites;
 };
+
 export const returnCharacters = (arrayCharacters: any) => {
   return _.filter(arrayCharacters, item => {
     return !item.favorite;
+  });
+};
+
+export const returnAdvancedFilter = (arrayCharacters: any, filter: string) => {
+  const lowerFilter = filter.toLowerCase();
+  return _.filter(arrayCharacters, item => {
+    return item.specie === lowerFilter;
   });
 };
 

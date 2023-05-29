@@ -1,12 +1,35 @@
 import React from 'react';
-import {Text, View, SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 
 // ↓ assets ↓
 import Arrow from '@src/assets/arrow.svg';
 
+// ↓ store ↓
+import {useStore} from '@src/store';
+import ResultsListFragment from '@src/components/fragments/results.fragment';
+
 export default function AdvancedScreen({route, navigation}: any) {
+  //
+  const {characters, filters}: any = useStore();
   const goBack = () => {
     navigation.goBack();
+  };
+
+  const countFilters = () => {
+    let count = 0;
+    if (filters.characters !== 'ALL') {
+      count += 1;
+    }
+    if (filters.specie !== 'ALL') {
+      count += 1;
+    }
+    return count;
   };
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -25,14 +48,19 @@ export default function AdvancedScreen({route, navigation}: any) {
           </View>
         </TouchableOpacity>
       </View>
-      <View className="flex-row ml-4 mt-6 mr-4 py-4 justify-between items-center border-t-2 border-gray-100 border-b-2">
-        <View className="">
-          <Text className="text-sky-600">{'5 Results'}</Text>
+      <ScrollView>
+        <View className="flex-row ml-4 mt-6 mr-4 py-4 justify-between items-center border-t-2 border-gray-100 border-b-2">
+          <View className="">
+            <Text className="text-sky-600">{'5 Results'}</Text>
+          </View>
+          <View className="px-2 py-1 bg-teal-300 rounded-xl">
+            <Text className="text-teal-700 text-xs">{`${countFilters()} filters`}</Text>
+          </View>
         </View>
-        <View className="px-2 py-1 bg-teal-300 rounded-xl">
-          <Text className="text-teal-700 text-xs">{'1 Filter'}</Text>
+        <View className="ml-4 mr-4">
+          <ResultsListFragment />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
