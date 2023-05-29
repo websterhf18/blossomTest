@@ -12,8 +12,14 @@ import {AppRoutes} from '@src/types/routes.types';
 // ↓ assets ↓
 import Arrow from '@src/assets/arrow.svg';
 
-export default function FiltersFragment({modalVisible, setModalVisible}: any) {
-  const navigation: any = useNavigation();
+export default function FiltersFragment({
+  modalVisible,
+  setModalVisible,
+}: {
+  modalVisible: boolean;
+  setModalVisible: (state: boolean) => void;
+}) {
+  const navigation = useNavigation<any>();
   const closeModal = () => {
     setModalVisible(false);
   };

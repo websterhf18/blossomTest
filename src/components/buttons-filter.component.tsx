@@ -10,13 +10,15 @@ import {
   specieFilters,
 } from '@src/utils/filters.constants';
 
+import {StoreType} from '@src/types/main.types';
+
 export default function ButtonsFilterComponent({}) {
   const {
     filters,
     setFiltersCharacter,
     setFiltersSpecie,
     setFiltersSorting,
-  }: any = useStore();
+  }: StoreType = useStore();
   const onSetFiltersCharacter = (value: string) => setFiltersCharacter(value);
   const onSetFiltersSpecie = (value: string) => setFiltersSpecie(value);
   const onSetFiltersSorting = (value: string) => setFiltersSorting(value);

@@ -13,9 +13,10 @@ import ListRowComponent from '../list-row.component';
 
 // ↓ utils ↓
 import {returnCharacters, translateCharacters} from '@src/utils/arrays.utils';
+import {CharactersType, StoreType} from '@src/types/main.types';
 
 export default function CharactersListFragment() {
-  const {characters, results, setCharacters}: any = useStore();
+  const {characters, results, setCharacters}: StoreType = useStore();
 
   const {loading, error, data} = getAllCharactersQuery();
 
@@ -41,9 +42,11 @@ export default function CharactersListFragment() {
       <View className="items-center">
         {!loading ? (
           <>
-            {lastCharacters.map((item: any, key: any) => {
-              return <ListRowComponent key={key} {...item} />;
-            })}
+            {lastCharacters.map(
+              (item: CharactersType, key: number | string) => {
+                return <ListRowComponent key={key} {...item} />;
+              },
+            )}
           </>
         ) : (
           <>

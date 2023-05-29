@@ -10,12 +10,13 @@ import ListRowComponent from '../list-row.component';
 
 // ↓ utils ↓
 import {returnAdvancedFilter, returnFavorites} from '@src/utils/arrays.utils';
+import {CharactersType, StoreType} from '@src/types/main.types';
 
 export default function ResultsListFragment() {
-  const {characters, filters}: any = useStore();
+  const {characters, filters}: StoreType = useStore();
 
   const newResults = () => {
-    let newCharacters = [];
+    let newCharacters: Array<CharactersType> = [];
     if (filters.characters !== 'ALL') {
       newCharacters = returnFavorites(characters);
     }
@@ -53,9 +54,11 @@ export default function ResultsListFragment() {
         <View className="items-center mt-4 mb-4">
           {lenghtList > 0 ? (
             <>
-              {newResults().map((item: any, key: any) => {
-                return <ListRowComponent key={key} {...item} />;
-              })}
+              {newResults().map(
+                (item: CharactersType, key: number | string) => {
+                  return <ListRowComponent key={key} {...item} />;
+                },
+              )}
             </>
           ) : (
             <>

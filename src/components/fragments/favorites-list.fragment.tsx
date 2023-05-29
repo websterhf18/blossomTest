@@ -11,8 +11,11 @@ import ListRowComponent from '../list-row.component';
 // ↓ utils ↓
 import {returnFavorites} from '@src/utils/arrays.utils';
 
+// ↓ types ↓
+import {CharactersType, StoreType} from '@src/types/main.types';
+
 export default function FavoritesListFragment() {
-  const {characters, results}: any = useStore();
+  const {characters, results}: StoreType = useStore();
 
   const favorites = returnFavorites(results.length > 0 ? results : characters);
   const lenghtList = favorites.length;
@@ -28,7 +31,7 @@ export default function FavoritesListFragment() {
       <View className="items-center">
         {lenghtList > 0 ? (
           <>
-            {favorites.map((item: any, key: any) => {
+            {favorites.map((item: CharactersType, key: number | string) => {
               return <ListRowComponent key={key} {...item} />;
             })}
           </>

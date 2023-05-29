@@ -1,4 +1,6 @@
-export const charactersFilters = [
+import {ArrayConstants} from '@src/types/main.types';
+
+export const charactersFilters: Array<ArrayConstants> = [
   {
     name: 'All',
     value: 'ALL',
@@ -12,7 +14,7 @@ export const charactersFilters = [
     value: 'OTHERS',
   },
 ];
-export const specieFilters = [
+export const specieFilters: Array<ArrayConstants> = [
   {
     name: 'All',
     value: 'ALL',
@@ -26,7 +28,7 @@ export const specieFilters = [
     value: 'ALIEN',
   },
 ];
-export const sortingFilters = [
+export const sortingFilters: Array<ArrayConstants> = [
   {
     name: 'A to Z',
     value: 'ASC',

@@ -1,6 +1,7 @@
 import {create} from 'zustand';
+import {CharactersType, FiltersType, StoreType} from './types/main.types';
 
-export const useStore = create(set => ({
+export const useStore = create<StoreType>(set => ({
   characters: [],
   results: [],
   filters: {
@@ -8,13 +9,18 @@ export const useStore = create(set => ({
     specie: 'ALL',
     sorting: 'ASC',
   },
-  setResults: (newResults: any) => set(() => ({results: newResults})),
-  setCharacters: (newCharacters: any) =>
+  setResults: (newResults: Array<CharactersType>) =>
+    set(() => ({results: newResults})),
+  setCharacters: (newCharacters: Array<CharactersType>) =>
     set(() => ({characters: newCharacters})),
-  setFiltersCharacter: (value: any) =>
-    set((state: any) => ({filters: {...state.filters, characters: value}})),
-  setFiltersSpecie: (value: any) =>
-    set((state: any) => ({filters: {...state.filters, specie: value}})),
-  setFiltersSorting: (value: any) =>
-    set((state: any) => ({filters: {...state.filters, sorting: value}})),
+  setFiltersCharacter: (value: string) =>
+    set((state: FiltersType) => ({
+      filters: {...state.filters, characters: value},
+    })),
+  setFiltersSpecie: (value: string) =>
+    set((state: FiltersType) => ({filters: {...state.filters, specie: value}})),
+  setFiltersSorting: (value: string) =>
+    set((state: FiltersType) => ({
+      filters: {...state.filters, sorting: value},
+    })),
 }));

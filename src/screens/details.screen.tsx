@@ -9,7 +9,12 @@ import FastImage from 'react-native-fast-image';
 import Arrow from '@src/assets/arrow.svg';
 import Heart from '@src/assets/heart.svg';
 
-export default function DetailsScreen({route, navigation}: any) {
+type Props = {
+  route: any;
+  navigation: any;
+};
+
+export default function DetailsScreen({route, navigation}: Props) {
   const itemDetail = route.params;
   const onPress = () => {
     navigation.goBack();

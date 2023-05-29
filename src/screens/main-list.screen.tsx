@@ -22,14 +22,15 @@ import Filter from '@src/assets/filters.svg';
 
 // ↓ store ↓
 import {useStore} from '@src/store';
+import {CharactersType, StoreType} from '@src/types/main.types';
 
 export default function MainListScreen({}) {
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
-  const {characters, setResults}: any = useStore();
-  const findInput = (value: any) => {
+  const {characters, setResults}: StoreType = useStore();
+  const findInput = (value: string) => {
     setText(value);
-    const results = characters.filter((item: any) => {
+    const results = characters.filter((item: CharactersType) => {
       if (value === '') return characters;
       return item.name.toLowerCase().includes(value.toLowerCase());
     });

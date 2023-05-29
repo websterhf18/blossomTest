@@ -15,22 +15,25 @@ import {useStore} from '@src/store';
 // ↓ assets ↓
 import Heart from '@src/assets/heart.svg';
 
-export default function ListRowComponent(props: any) {
+// ↓ types ↓
+import {CharactersType, StoreType} from '@src/types/main.types';
+
+export default function ListRowComponent(props: CharactersType) {
   const {id, name, image, species, status, location, favorite} = props;
   // ↓ other hooks ↓
-  const navigation: any = useNavigation();
-  const goToDetails = (item: any) => {
+  const navigation = useNavigation<any>();
+  const goToDetails = (item: CharactersType) => {
     navigation.navigate(AppRoutes.Details, {
       ...item,
       location: item.location.name,
     });
   };
   // ↓ state ↓
-  const {characters, setCharacters}: any = useStore();
+  const {characters, setCharacters}: StoreType = useStore();
 
   // ↓ callbacks ↓
-  const addToFavorites = (item: any) => {
-    const indexObject = characters.findIndex((obj: any) => {
+  const addToFavorites = (item: CharactersType) => {
+    const indexObject = characters.findIndex((obj: CharactersType) => {
       return obj.id === item.id;
     });
     characters[indexObject].favorite = !item.favorite;
