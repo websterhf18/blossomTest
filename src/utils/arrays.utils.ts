@@ -16,8 +16,10 @@ export const returnCharacters = (arrayCharacters: any) => {
 
 export const returnAdvancedFilter = (arrayCharacters: any, filter: string) => {
   const lowerFilter = filter.toLowerCase();
+  const capitalizeFilter =
+    lowerFilter.charAt(0).toUpperCase() + lowerFilter.slice(1);
   return _.filter(arrayCharacters, item => {
-    return item.specie === lowerFilter;
+    return item.species === capitalizeFilter;
   });
 };
 
