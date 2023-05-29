@@ -14,7 +14,12 @@ import Arrow from '@src/assets/arrow.svg';
 import {useStore} from '@src/store';
 import ResultsListFragment from '@src/components/fragments/results.fragment';
 
-export default function AdvancedScreen({route, navigation}: any) {
+type Props = {
+  route: any;
+  navigation: any;
+};
+
+export default function AdvancedScreen({route, navigation}: Props) {
   //
   const goBack = () => {
     navigation.goBack();
